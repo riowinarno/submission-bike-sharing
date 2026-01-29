@@ -125,6 +125,7 @@ with col1:
         color='season'
     )
     fig_season.update_layout(xaxis_title='Musim', yaxis_title='Rata-rata Penyewaan Harian', showlegend=False)
+    
     st.plotly_chart(fig_season, use_container_width=True)
 
 # Visualisasi cuaca
@@ -141,6 +142,7 @@ with col2:
             color=weather_col
         )
         fig_weather.update_layout(xaxis_title='Cuaca', yaxis_title='Rata-rata Penyewaan Harian', showlegend=False)
+        
         st.plotly_chart(fig_weather, use_container_width=True)
     else:
         st.info('Weather chart tidak ditampilkan karena kolom cuaca tidak tersedia.')
@@ -158,6 +160,7 @@ if weather_col:
         title='Korelasi musim dan cuaca terhadap rata-rata penyewaan sepeda',
         labels={'x': 'Cuaca', 'y': 'Musim'}
     )
+
     st.plotly_chart(heatmap_season_weather, use_container_width=True)
 
 # Insight dari visualisasi
@@ -200,7 +203,6 @@ if view == 'Per Tahun':
         markers=True,
         title='Pola penyewaan per jam berdasarkan jenis pengguna (per tahun)'
     )
-
     fig_hour.for_each_annotation(lambda a: a.update(text=a.text.split('=')[-1]))
 else:
 # Visualisasi jam puncak gabungan
@@ -215,6 +217,7 @@ else:
 
 fig_hour.update_layout(yaxis_title='Rata-rata Penyewaan', legend_title='Jenis Pengguna')
 fig_hour.update_xaxes(title_text='Jam (0-23)', dtick=2)
+
 st.plotly_chart(fig_hour, use_container_width=True)
 
 # Insight dari visualisasi
@@ -306,6 +309,7 @@ if view == 'Tahun':
     fig_casual_registered.update_yaxes(tickformat=',')
     ymax = casual_registered_long['total'].max()
     fig_casual_registered.update_yaxes(range=[0, ymax * 1.15])
+    
     st.plotly_chart(fig_casual_registered, use_container_width=True)
 
 else:
@@ -332,6 +336,7 @@ else:
         title=f'Total Penyewaan per Bulan ({select_year}): Casual vs Registered'
     )
     fig_casual_registered.update_layout(xaxis_title='Bulan', yaxis_title='Total Penyewaan', legend_title='Jenis Pengguna')
+    
     st.plotly_chart(fig_casual_registered, use_container_width=True)
 
 # Insight dari visualisasi
@@ -364,6 +369,7 @@ fig_hm = px.imshow(
     labels={'x': 'Jam', 'y': 'Hari'}
 )
 fig_hm.update_xaxes(dtick=1)
+
 st.plotly_chart(fig_hm, use_container_width=True)
 
 # Insight dari visualisasi
